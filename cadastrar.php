@@ -24,7 +24,7 @@
         </form>  
     </div>
     <?php
-    if(isset($_POST['nome']));{
+    if(isset($_POST['nome'])){
         $nome = addslashes($_POST['nome']);
         $telefone = addslashes($_POST['telefone']);
         $email = addslashes($_POST['email']);
@@ -37,17 +37,44 @@
                 if($senha == $confirmasenha) {
                     
                     if($u->cadastrar($nome, $telefone, $email, $senha)) {
-                        
-                        echo "Cadastro com sucesso! Acesse para entrar!";
-
+                        ?>
+                        <div id="msg-sucesso">
+                            Cadastro com sucesso! Acesse para entrar!
+                        </div>
+                        <?php
                     }
-                    else {echo "Email ja cadastrado!";}
+                    else 
+                        {
+                        ?>
+                        <div class="msg-erro">
+                            Email já cadastrado!
+                        </div>
+                        <?php
+                    }
                 }
-                else {echo "Senha e confirmar senha não correspondem";}
+                else {
+                    ?>
+                    <div class="msg-erro">
+                        Senha e confirmar senha não correspondem
+                    </div>
+                    <?php
+                }
+
                 
-            }else {echo "Erro: ".$u->msgErro;}
-            
-        }else {echo "Preencha todos os campos!";}
+            }else {
+            ?>
+                <div class="msg-erro">
+                    <?php echo "Erro: ".$u->msgErro;?>
+                </div>
+            <?php
+            }
+        }else {
+        ?>
+        <div class="msg-erro">
+            Preencha todos os campos!
+        </div>
+        <?php
+        }
     }
     ?>
 </body>

@@ -1,3 +1,7 @@
+<?php
+    require_once 'classes/cadastro.php';
+    $u = new Usuario;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +21,50 @@
             <a href="cadastrar.php">Ainda não é inscrito?<strong>Cadastre-se!</strong></a>
         </form>  
     </div>
-        
+    
+    <?php
+    if(isset($_POST['email'])) 
+    {
+  
+        $email = addslashes($_POST['email']);
+        $senha  = addslashes($_POST['senha']);
+
+        if(!empty($email) && !empty($senha)) 
+        {
+            $u->conectar("formulario-login", "localhost", "root", "");
+            if($u->msgErro == "") 
+            {
+                if($u->logar($email, $senha)) 
+                {
+                    header("location: areaPrivada.php");
+                } 
+                else 
+                {
+                    ?>
+                    <div class="msg-erro">
+                        Email ou senha estão incorretos!
+                    </div>
+                    <?php
+                }                      
+            } 
+            else     
+            {
+                    ?>
+                        <div class="msg-erro">
+                            <?php echo "Erro: ".$u->msgErro;?>
+                        </div>
+                    <?php
+                }
+        } 
+        else
+        {
+        ?>
+        <div class="msg-erro">
+            Preencha todos os campos!
+        </div>
+        <?php
+        }
+    }
+    ?>
 </body>
 </html>

@@ -77,3 +77,20 @@ a:hover {
 :-ms-input-placeholder {
     color: #fff;
 }
+
+#msg-sucesso {
+    width: 400px;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: rgba(50, 205, 50, .3);
+    border: 1px solid rgb(134, 139, 134);
+}
+
+.msg-erro {
+
+    width: 400px;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: rgba(250, 128, 144, .3);
+    border: 1px solid rgb(165, 42, 42);
+}

@@ -29,7 +29,7 @@
             return false ;
         } 
         else {
-            $sql = $pdo->preapre("INSERT INTO cadastro (nome, telefone, email, senha) VALUES (:n, :t, :e, :s)");
+            $sql = $pdo->prepare("INSERT INTO cadastro (nome, telefone, email, senha) VALUES (:n, :t, :e, :s)");
             $sql->bindValue(":n", $nome);
             $sql->bindValue(":t", $telefone);
             $sql->bindValue(":e", $email);
